@@ -2,13 +2,15 @@ package server
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/labstack/echo/v4"
 )
 
 type Server struct {
-	Host string
-	Port string
+	Host    string
+	Port    string
+	Envvars []string
 }
 
 func (s *Server) Start() {
@@ -16,6 +18,13 @@ func (s *Server) Start() {
 	e.HideBanner = true
 
 	s.addRoutes(e)
+
+	// ensure Envvars
+	for _, envV := range s.Envvars {
+		if val := os.Getenv(envV); val == "" {
+			fmt.Printf("Environment Variable '%s' probably not set\n", envV)
+		}
+	}
 
 	e.Logger.Fatal(e.Start(fmt.Sprintf("%s:%s", s.Host, s.Port)))
 }
