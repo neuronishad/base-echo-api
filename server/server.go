@@ -26,6 +26,8 @@ func (s *Server) Start() {
 		}
 	}
 
+	e.Static("/static", "assets")
+
 	e.Logger.Fatal(e.Start(fmt.Sprintf("%s:%s", s.Host, s.Port)))
 }
 

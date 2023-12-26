@@ -2,7 +2,10 @@ module be
 
 go 1.21.5
 
-require github.com/labstack/echo/v4 v4.11.4
+require (
+	github.com/a-h/templ v0.2.501
+	github.com/labstack/echo/v4 v4.11.4
+)
 
 require (
 	github.com/labstack/gommon v0.4.2 // indirect
