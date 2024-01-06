@@ -12,7 +12,9 @@ templ Base(title string) {
 			<link href="/static/output.css" rel="stylesheet"/>
 		</head>
 		<body>
-			{ children... }
+			<div class="w-screen h-screen overflow-auto">
+				{ children... }
+			</div>
 		</body>
 	</html>
 }
