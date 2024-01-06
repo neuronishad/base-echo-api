@@ -13,5 +13,9 @@ func (s *Server) addRoutes(e *echo.Echo) {
 		return c.String(http.StatusOK, "OK")
 	})
 
-	e.GET("", handler.Home)
+	e.GET("", handler.Index)
+	e.GET("/home", handler.Home)
+	e.GET("/auth/:provider", handler.SocialAuth)
+	e.GET("/auth/:provider/callback", handler.SocialAuthCallback)
+	e.GET("/auth/:provider/logout", handler.SocialAuthLogout)
 }
